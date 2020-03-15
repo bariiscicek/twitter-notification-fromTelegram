@@ -2,7 +2,7 @@ import telebot
 import requests
 import json
 import io
-my_token = ''
+my_token = 'my_token'
 userid=''
 bot = telebot.TeleBot(token=my_token)
 
