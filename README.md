@@ -23,7 +23,7 @@ $ sudo nano /etc/crontab
 ```
 **Insert code below into the console**
 ```console
-$ * * * * * root python main.py
+* * * * * root python main.py
 ```
 
 Now, we can wait for new messages about pages we want to follow on twitter.
