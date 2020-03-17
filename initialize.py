@@ -1,13 +1,7 @@
-import telebot
 import requests
 import json
 import io
-my_token = 'my_token'
-userid=''
-bot = telebot.TeleBot(token=my_token)
 
-userlist=['539359028']
-followlist=['F1','Motorsport_TR','FormulaTurkiye','F1tutkumuz','F1efsane','F1Haberler','F1MemesTR','F1HerSey','Spectatorindex']
 
 def removecap(ttt):
     s=ttt.find('<')
@@ -46,18 +40,19 @@ def createfiles(lis):
         js[i]={}
     return js
 
-followlist=['F1','Motorsport_TR','FormulaTurkiye','F1tutkumuz','F1efsane','F1Haberler','F1MemesTR','F1HerSey','Spectatorindex']
+if __name__=='__main__':
+    followlist=['F1','Motorsport_TR','FormulaTurkiye','F1tutkumuz','F1efsane','F1Haberler','F1MemesTR','F1HerSey','Spectatorindex']
 
-js=createfiles(followlist)
-url='https://twitter.com/'
-for i in followlist:
-    newurl=url+i
-    a=requests.get(newurl)
-    a=a.text
-    a=findpinned(a)
-    link=findurl(a)
-    twt=findtweet(a)
-    text=removecap(twt)
-    js[i]['tweet']=link
-with io.open('/var/tweets.json', "w", encoding="utf-8") as f:
-    f.write(json.dumps(js))
+    js=createfiles(followlist)
+    url='https://twitter.com/'
+    for i in followlist:
+        newurl=url+i
+        a=requests.get(newurl)
+        a=a.text
+        a=findpinned(a)
+        link=findurl(a)
+        twt=findtweet(a)
+        text=removecap(twt)
+        js[i]['tweet']=link
+    with io.open('/var/tweets.json', "w", encoding="utf-8") as f:
+        f.write(json.dumps(js))
